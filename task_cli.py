@@ -31,7 +31,17 @@ def get_timestamp():
 
 # core features
 def add_task(description):
-    pass
+    tasks = load_tasks()
+    task = {
+        'id': get_next_id(tasks),
+        'description': description,
+        'status': 'todo',
+        'createdAt': (temp_time := get_timestamp()),
+        'updatedAt': temp_time
+    }
+    tasks.append(task)
+    save_tasks(tasks)
+    print(f"Task added successfully (ID: {task['id']})")
 
 def update_task(task_id, description):
     pass
@@ -51,7 +61,8 @@ def main():
 
     # ensures proper input
     if len(sys.argv) < 2:
-        print("Usage: python <command> [arguments]")
+        print("Usage: task-cli <command> [arguments]")
+        return
 
     command = sys.argv[1]
 
