@@ -7,7 +7,6 @@ FILE_NAME = 'tasks.json'
 
 # utility
 def load_tasks():
-
     if not os.path.exists(FILE_NAME):
         return []
     
@@ -66,7 +65,15 @@ def delete_task(task_id):
     print("Task deleted successfully")
 
 def mark_task(task_id, status):
-    pass
+    tasks = load_tasks()
+    for task in tasks:
+        if task['id'] == task_id:
+            task['status'] = status
+            task['updatedAt'] = get_timestamp()
+            save_tasks()
+            print(f"Task marked as {status}")
+            return
+    print('Error: Task not found')
 
 def list_tasks(filter_status=None):
     tasks = load_tasks()
@@ -90,8 +97,39 @@ def main():
 
     command = sys.argv[1]
 
-    if(command == 'add'):
-        description = sys.argv[2]
+    try:
+        if(command == 'add'):
+            description = sys.argv[2]
+            add_task(description)
+
+        elif(command == 'update'):
+            id = int(sys.argv[2])
+            description = sys.argv[3]
+            update_task(id, description)
+
+        elif(command == 'delete'):
+            id = int(sys.argv[2])
+            delete_task(id)
+
+        elif(command == 'mark-in-progress'):
+            id = int(sys.argv[2])
+            mark_task(id, 'in-progress')
+        
+        elif(command == 'mark-done'):
+            id = int(sys.argv[2])
+            mark_task(id, 'done')
+
+        elif(command == 'list'):
+            filter_status = None if len(sys.argv) < 2 else sys.argv[2]
+            list_tasks(filter_status)
+
+        else:
+            print('Unknown command')
+
+    except IndexError:
+        print("Error: Missing arguments")
+    except ValueError:
+        print("Error: Invalid task ID")
 
 if __name__ == '__main__':
     main()
