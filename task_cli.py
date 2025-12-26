@@ -44,21 +44,45 @@ def add_task(description):
     print(f"Task added successfully (ID: {task['id']})")
 
 def update_task(task_id, description):
-    pass
+    tasks = load_tasks()
+    for task in tasks:
+        if task['id'] == task_id:
+            task['description'] = description
+            task['updatedAt'] = get_timestamp()
+            save_tasks(tasks)
+            print("Task updated successfully")
+            return
+        print('Error: Task not found')
 
 def delete_task(task_id):
-    pass
+    tasks = load_tasks()
+    new_tasks = [task for task in tasks if task['id'] != task_id]
+
+    if len(tasks) == len(new_tasks):
+        print("Error: Task not found")
+        return
+    
+    save_tasks(new_tasks)
+    print("Task deleted successfully")
 
 def mark_task(task_id, status):
     pass
 
 def list_tasks(filter_status=None):
-    pass
+    tasks = load_tasks()
+    filtered_tasks = tasks if not filter_status else [
+        task for task in tasks if task['status'] == filter_status
+    ]
+
+    if not filtered_tasks:
+        print("No tasks found")
+        return
+
+    for task in tasks:
+        print(f"[{task['id']}] {task['description']} ({task['status']})")
+
 
 def main():
-    load_tasks()
-    exit()
-
     # ensures proper input
     if len(sys.argv) < 2:
         print("Usage: task-cli <command> [arguments]")
