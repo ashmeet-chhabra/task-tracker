@@ -31,5 +31,13 @@ class TestTaskCLI(unittest.TestCase):
 
         self.assertEqual(len(tasks), 0)
 
+    def test_mark_task(self):
+        task.add_task('Hello')
+        task.mark_task(1, 'Actually Bye')
+        tasks = task.load_tasks()
+
+        self.assertEqual(tasks[0]['status'], 'Actually Bye')
+        task.delete_task(1)
+
 if __name__ == '__main__':
     unittest.main()
