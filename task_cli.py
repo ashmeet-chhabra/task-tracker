@@ -12,7 +12,7 @@ def load_tasks():
     
     with open(FILE_NAME, 'r') as file:
         try:
-            return(json.load(file))
+            return json.load(file)
         except json.JSONDecodeError:
             return []
         
