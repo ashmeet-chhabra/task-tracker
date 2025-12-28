@@ -70,7 +70,7 @@ def mark_task(task_id, status):
         if task['id'] == task_id:
             task['status'] = status
             task['updatedAt'] = get_timestamp()
-            save_tasks()
+            save_tasks(tasks)
             print(f"Task marked as {status}")
             return
     print('Error: Task not found')
@@ -85,7 +85,7 @@ def list_tasks(filter_status=None):
         print("No tasks found")
         return
 
-    for task in tasks:
+    for task in filtered_tasks:
         print(f"[{task['id']}] {task['description']} ({task['status']})")
 
 
