@@ -51,7 +51,7 @@ def update_task(task_id, description):
             save_tasks(tasks)
             print("Task updated successfully")
             return
-        print('Error: Task not found')
+    print('Error: Task not found')
 
 def delete_task(task_id):
     tasks = load_tasks()
@@ -120,7 +120,7 @@ def main():
             mark_task(id, 'done')
 
         elif(command == 'list'):
-            filter_status = None if len(sys.argv) < 2 else sys.argv[2]
+            filter_status = None if len(sys.argv) < 3 else sys.argv[2]
             list_tasks(filter_status)
 
         else:
