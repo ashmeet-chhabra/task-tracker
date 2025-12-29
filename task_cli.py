@@ -26,7 +26,7 @@ def get_next_id(tasks):
     return max(task["id"] for task in tasks) + 1
 
 def get_timestamp():
-    return datetime.now().strftime('%Y-%m-%d: %H:%M:%S')
+    return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # core features
 def add_task(description):
