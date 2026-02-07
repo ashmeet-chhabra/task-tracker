@@ -6,7 +6,7 @@ This project focuses on practicing file handling, JSON data storage, command-lin
 
 ## Project URL
 
-[https://roadmap.sh/projects/github-user-activity](https://roadmap.sh/projects/task-tracker)
+[https://roadmap.sh/projects/task-tracker](https://roadmap.sh/projects/task-tracker)
 
 
 ## Features
@@ -139,4 +139,5 @@ Example structure:
 ## License
 
 This project is open-source and available under the MIT License.
+
 
