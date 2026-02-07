@@ -4,6 +4,11 @@ A simple command-line task manager built with Python that allows users to create
 
 This project focuses on practicing file handling, JSON data storage, command-line interfaces, and structured program design.
 
+## Project URL
+
+[https://roadmap.sh/projects/github-user-activity](https://roadmap.sh/projects/task-tracker)
+
+
 ## Features
 
 * Add new tasks
@@ -134,3 +139,4 @@ Example structure:
 ## License
 
 This project is open-source and available under the MIT License.
+
